@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Nuevo Alquiler</title></head>
+<body>
+<header>
+  <h1>AlquilaTusVehiculos</h1>
+  <nav>
+    <a th:href="@{/clientes}">Clientes</a> |
+    <a th:href="@{/vehiculos}">Vehículos</a> |
+    <a th:href="@{/alquileres}">Alquileres</a>
+  </nav>
+  <hr/>
+</header>
+
+<h2>Crear nuevo alquiler</h2>
+
+<form th:action="@{/alquileres/save}" method="post">
+  <div>
+    <label>Cliente:
+      <select name="clienteId" required>
+        <option value="" disabled selected>-- seleccionar --</option>
+        <option th:each="c : ${clientes}" th:value="${c.id}" th:text="${c.nombre}">Cliente</option>
+      </select>
+    </label>
+  </div>
+
+  <div>
+    <label>Fecha inicio: <input type="date" name="fechaInicio" required /></label>
+  </div>
+
+  <div>
+    <label>Fecha fin: <input type="date" name="fechaFin" required /></label>
+  </div>
+
+  <div>
+    <label>Vehículos (Tecla Control para seleccionar varios:</label><br/>
+    <select name="vehiculoIds" multiple size="6">
+      <option th:each="v : ${vehiculos}" th:value="${v.id}" th:text="${v.matricula + ' ' + v.modelo + ' - ' + v.precioDia + ' €/día'}">Vehículo</option>
+    </select>
+  </div>
+
+  <div>
+    <button type="submit">Crear Alquiler</button>
+    <a th:href="@{/alquileres}">Cancelar</a>
+  </div>
+</form>
+</body>
+</html>

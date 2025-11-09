@@ -31,15 +31,3 @@ build/
 
 ### VS Code ###
 .vscode/
-
-# Maven
-/target/
-*.log
-
-# OS
-.DS_Store
-Thumbs.db
-
-
-# IDE temp
-*.class
